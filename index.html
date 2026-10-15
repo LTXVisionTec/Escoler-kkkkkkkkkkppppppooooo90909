@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="Loarder — educação moderna para desenvolver talentos e construir o futuro.">
+<meta name="robots" content="index,follow">
+<title>Loarder | Educação para o futuro</title>
+
+<style>
+:root {
+  --navy: #111827;
+  --navy2: #1b2946;
+  --blue: #4f7cff;
+  --blue2: #3565ec;
+  --cyan: #48d7e8;
+  --violet: #8a72ff;
+  --background: #f4f7fc;
+  --ink: #172338;
+  --muted: #647188;
+  --line: #dfe6f1;
+  --shadow: 0 20px 60px #20345b18;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--background);
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+.site-header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 74px;
+  background: #ffffffeF;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #dfe6f180;
+}
+
+.header-inner {
+  width: min(1160px, 92%);
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 850;
+  letter-spacing: -1px;
+  color: var(--navy);
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, var(--blue), var(--violet));
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 8px 18px #4f7cff3d;
+}
+
+.brand small {
+  display: block;
+  margin-top: 4px;
+  font-size: 8px;
+  letter-spacing: 1.3px;
+  color: #7c899d;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav a {
+  font-size: 12px;
+  font-weight: 750;
+  color: #657187;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--blue2);
+}
+
+.nav .cta {
+  background: var(--navy);
+  color: white;
+  padding: 11px 15px;
+  border-radius: 9px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  font-size: 26px;
+  color: var(--navy);
+  cursor: pointer;
+}
+
+.progress {
+  position: fixed;
+  z-index: 120;
+  top: 73px;
+  height: 3px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--violet));
+  transition: width .3s;
+}
+
+.dots {
+  position: fixed;
+  z-index: 90;
+  right: 17px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: #a8b5c8;
+  cursor: pointer;
+}
+
+.dots button[aria-current="true"] {
+  height: 25px;
+  background: var(--blue);
+}
+
+/* Cada secção ocupa o ecrã inteiro no computador. */
+.panel {
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 88px 0 25px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  scrollbar-width: thin;
+  scrollbar-color: #9badc8 transparent;
+  isolation: isolate;
+}
+
+.container {
+  width: min(1160px, 88%);
+  margin: auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue2);
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+h1, h2 {
+  font-weight: 820;
+  letter-spacing: -2.4px;
+  line-height: 1.08;
+}
+
+h1 {
+  font-size: clamp(42px, 5.5vw, 72px);
+  margin: 18px 0;
+}
+
+h2 {
+  font-size: clamp(31px, 4vw, 51px);
+  margin: 12px 0 15px;
+}
+
+h1 em, h2 em {
+  font-style: normal;
+  background: linear-gradient(100deg, var(--blue), var(--violet), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.actions {
+  display: flex;
+  gap: 11px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: .22s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px #24385e20;
+}
+
+.primary {
+  background: linear-gradient(110deg, var(--blue), var(--blue2));
+  color: white;
+}
+
+.secondary {
+  background: #ffffffcc;
+  border-color: #cbd7e9;
+  color: var(--navy);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(17px);
+  transition: opacity .6s, transform .6s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.delay-1 { transition-delay: .08s; }
+.delay-2 { transition-delay: .16s; }
+
+@keyframes entrance {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  50% { transform: translateY(-9px) rotate(1deg); }
+}
+
+.panel.is-active .hero-copy {
+  animation: entrance .65s both;
+}
+
+.panel.is-active .hero-visual {
+  animation: entrance .75s .1s both;
+}
+
+/* 1 — INÍCIO */
+
+.hero {
+  background:
+    radial-gradient(ellipse at 80% 20%, #293d76 0, transparent 35%),
+    linear-gradient(130deg, #101827, #182641 58%, #1b2850);
+  color: white;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.02fr .98fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero .eyebrow {
+  color: #a9c1ff;
+}
+
+.hero h1 {
+  color: white;
+}
+
+.hero h1 em {
+  background: linear-gradient(100deg, #77a3ff, #a99bff 55%, #55e2ed);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero .lead {
+  color: #c0cbe0;
+}
+
+.hero .secondary {
+  color: white;
+  background: #ffffff0d;
+  border-color: #ffffff33;
+}
+
+.proof {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 25px;
+}
+
+.proof-icons {
+  display: flex;
+}
+
+.proof-icons span {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid #192641;
+  margin-right: -6px;
+  background: var(--blue);
+}
+
+.proof-icons span:nth-child(2) {
+  background: var(--violet);
+}
+
+.proof-icons span:nth-child(3) {
+  background: #24aebf;
+}
+
+.proof strong,
+.proof small {
+  display: block;
+}
+
+.proof strong { font-size: 10px; }
+.proof small { font-size: 9px; color: #a8b7d1; }
+
+.hero-visual {
+  position: relative;
+  padding: 9px 18px 19px 0;
+}
+
+.hero-photo {
+  width: 100%;
+  height: clamp(300px, 52vh, 450px);
+  object-fit: cover;
+  border-radius: 23px;
+  border: 1px solid #ffffff30;
+  box-shadow: 0 28px 70px #050b1a66;
+}
+
+.float-card {
+  position: absolute;
+  right: -10px;
+  top: 30px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: white;
+  color: var(--navy);
+  box-shadow: var(--shadow);
+  animation: float 5s ease-in-out infinite;
+}
+
+.float-card span {
+  display: block;
+  color: var(--blue2);
+  font-size: 20px;
+}
+
+.float-card b {
+  display: block;
+  font-size: 13px;
+}
+
+.float-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 5px;
+}
+
+.caption {
+  position: absolute;
+  left: 16px;
+  bottom: 35px;
+  font-size: 9px;
+  font-weight: 800;
+  color: white;
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  letter-spacing: 1.4px;
+  color: #9caac4;
+}
+
+/* 2 — A ESCOLA */
+
+.about {
+  background: linear-gradient(130deg, #f7f9fd, #edf3fc);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: .88fr 1.12fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-art {
+  height: clamp(290px, 50vh, 415px);
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #dce8ff, #e5e0ff);
+  padding: 14px;
+}
+
+.about-art img {
+  width: 82%;
+  height: 77%;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.badge {
+  position: absolute;
+  right: 0;
+  top: 14%;
+  padding: 13px;
+  border-radius: 11px;
+  background: white;
+  box-shadow: var(--shadow);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.about-bottom {
+  position: absolute;
+  left: 12%;
+  right: 11px;
+  bottom: 14px;
+  padding: 13px 15px;
+  background: var(--navy);
+  color: white;
+  border-radius: 11px;
+}
+
+.about-bottom b,
+.about-bottom small {
+  display: block;
+}
+
+.about-bottom b { font-size: 11px; }
+.about-bottom small { font-size: 9px; color: #b9c7df; }
+
+.values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 17px;
+}
+
+.value {
+  padding: 11px;
+  border: 1px solid #e0e7f2;
+  background: #ffffffbd;
+  border-radius: 11px;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.value:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.value b {
+  display: block;
+  font-size: 10px;
+}
+
+.value p {
+  font-size: 9px;
+  color: var(--muted);
+  margin: 4px 0 0;
+}
+
+/* 3 — ENSINO */
+
+.learning {
+  background: linear-gradient(145deg, #111827, #172742 75%, #1d2a4c);
+  color: white;
+}
+
+.learning .eyebrow { color: #9db7ff; }
+.learning .lead { color: #b6c2d8; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 28px;
+  margin-bottom: 23px;
+}
+
+.section-head .lead {
+  max-width: 360px;
+  font-size: 12px;
+}
+
+.programs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.program {
+  min-height: clamp(230px, 36vh, 310px);
+  padding: 17px;
+  border-radius: 14px;
+  border: 1px solid #ffffff22;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  transition: transform .28s, box-shadow .28s;
+}
+
+.program::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(180deg, #0c14243a, #101827ef);
+}
+
+.program:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px #03081355;
+}
+
+.program h3 {
+  font-size: 21px;
+  margin: 0 0 7px;
+}
+
+.program p {
+  font-size: 11px;
+  color: #d1d9e9;
+}
+
+.program small {
+  color: #b7c7e5;
+  font-size: 8px;
+}
+
+.one {
+  background-image: url("https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=850&q=82");
+}
+
+.two {
+  background-image: url("https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=850&q=82");
+}
+
+.three {
+  background-image: url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=850&q=82");
+}
+
+.pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.pills span {
+  padding: 7px 11px;
+  border: 1px solid #ffffff2b;
+  border-radius: 100px;
+  font-size: 9px;
+  color: #d5def0;
+}
+
+/* 4 — ADMISSÕES */
+
+.admissions {
+  background: linear-gradient(135deg, #edf2ff, #f7f8fc 60%, #eaf8fb);
+}
+
+.admission-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.steps { margin-top: 18px; }
+
+.step {
+  display: grid;
+  grid-template-columns: 37px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #dbe3f0;
+}
+
+.step-num {
+  width: 35px;
+  height: 35px;
+  border-radius: 11px;
+  background: white;
+  border: 1px solid #e0e8f5;
+  color: var(--blue2);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.step h3 { font-size: 13px; margin: 0 0 3px; }
+.step p { font-size: 10px; color: var(--muted); margin: 0; }
+
+.admission-card {
+  padding: 25px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #17243d, #222e54);
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.admission-card h3 { font-size: 25px; }
+.admission-card p { font-size: 10px; color: #c5d0e5; }
+
+.faq {
+  border-top: 1px solid #ffffff2b;
+  margin-top: 17px;
+}
+
+.faq-item { border-bottom: 1px solid #ffffff2b; }
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: white;
+  padding: 10px 0;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.faq-answer { display: none; }
+.faq-item.open .faq-answer { display: block; }
+.faq-answer p { font-size: 9px; line-height: 1.7; }
+
+/* 5 — CONTACTOS */
+
+.contact { background: white; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: .83fr 1.17fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.contact-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #e3eaf5;
+  background: #f8faff;
+  border-radius: 12px;
+}
+
+.contact-item small,
+.contact-item b {
+  display: block;
+}
+
+.contact-item small { font-size: 8px; color: #7d8aa1; }
+.contact-item b { font-size: 11px; }
+.contact-item a { font-size: 10px; color: var(--blue2); }
+
+.socials {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.socials a {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.contact-form {
+  padding: 21px 23px;
+  border: 1px solid #e2e9f4;
+  border-radius: 17px;
+  background: #f7f9fd;
+}
+
+.contact-form h3 { font-size: 20px; }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 11px;
+}
+
+.field { margin-bottom: 9px; }
+.full { grid-column: 1 / -1; }
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #dce4f0;
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  font-size: 11px;
+}
+
+textarea {
+  min-height: 65px;
+  resize: vertical;
+}
+
+.form-note, .form-status {
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.form-status { color: var(--blue2); }
+
+/* 6 — LOCALIZAÇÃO */
+
+.location {
+  background: linear-gradient(135deg, #edf2fa, #e9f6f8);
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: .78fr 1.22fr;
+  align-items: center;
+  gap: 38px;
+}
+
+.location-detail {
+  margin: 18px 0;
+  padding: 13px 15px;
+  background: #ffffffad;
+  border: 1px solid #dce6f2;
+  border-radius: 11px;
+}
+
+.location-detail b,
+.location-detail span {
+  display: block;
+}
+
+.location-detail span {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.map {
+  height: clamp(250px, 44vh, 370px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 17px;
+  border: 5px solid white;
+  box-shadow: var(--shadow);
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--navy);
+  color: #d2dced;
+  padding: 11px 6%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 9px;
+}
+
+.whatsapp {
+  position: fixed;
+  right: 18px;
+  bottom: 17px;
+  z-index: 95;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #16a765;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 23px;
+  box-shadow: 0 8px 25px #173e3833;
+}
+
+/* Telemóveis: a altura adapta-se ao conteúdo para nada ficar escondido. */
+@media(max-width: 950px) {
+  .nav { gap: 12px; }
+  .hero-grid, .about-grid, .admission-grid, .contact-grid { gap: 25px; }
+}
+
+@media(max-width: 720px) {
+  html { scroll-snap-type: y proximity; }
+  .site-header { height: 68px; }
+  .progress { top: 67px; }
+  .menu-toggle { display: block; }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    padding: 14px 5%;
+    background: white;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; }
+
+  .panel {
+    height: auto;
+    min-height: 100svh;
+    padding: 90px 0 36px;
+    overflow: visible;
+    scroll-snap-stop: normal;
+  }
+
+  .container { width: 88%; }
+  .hero { padding-top: 100px; }
+  .hero-grid, .about-grid, .admission-grid,
+  .contact-grid, .location-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  h1 { font-size: clamp(40px, 10.5vw, 56px); }
+  h2 { font-size: clamp(31px, 8.5vw, 42px); }
+
+  .hero-photo { height: 290px; border-radius: 18px; }
+  .float-card { top: 12px; right: -4px; padding: 11px; }
+  .scroll-cue { display: none; }
+
+  .about-art { height: 280px; }
+  .values { gap: 8px; }
+  .programs { grid-template-columns: 1fr; }
+  .program { min-height: 210px; }
+  .section-head { display: block; }
+  .contact-form { padding: 19px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .full { grid-column: auto; }
+  .map { height: 280px; }
+
+  .footer {
+    position: relative;
+    margin-top: 25px;
+    flex-wrap: wrap;
+  }
+
+  .dots { right: 6px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+
+  html { scroll-snap-type: none; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#inicio">
+      <span class="brand-mark">L</span>
+      <span>Loarder<small>ESCOLA · EDUCAÇÃO PARA O FUTURO</small></span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Abrir menu" aria-expanded="false">☰</button>
+
+    <nav class="nav" id="siteNav">
+      <a class="active" href="#inicio">Início</a>
+      <a href="#escola">A Escola</a>
+      <a href="#ensino">Ensino</a>
+      <a href="#admissoes">Admissões</a>
+      <a href="#contacto">Contactos</a>
+      <a class="cta" href="#contacto">Vamos conversar ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="progress"><span id="progressFill"></span></div>
+
+<nav class="dots" aria-label="Navegação das secções">
+  <button data-go="0" aria-label="Início" aria-current="true"></button>
+  <button data-go="1" aria-label="A Escola"></button>
+  <button data-go="2" aria-label="Ensino"></button>
+  <button data-go="3" aria-label="Admissões"></button>
+  <button data-go="4" aria-label="Contactos"></button>
+  <button data-go="5" aria-label="Localização"></button>
+</nav>
+
+<main>
+
+<section class="panel hero" id="inicio">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">APRENDER HOJE. TRANSFORMAR O AMANHÃ.</span>
+      <h1>Educação que abre<br>portas para <em>o futuro.</em></h1>
+      <p class="lead">Na Loarder, cada aluno é incentivado a descobrir o seu potencial, desenvolver competências e construir o futuro com confiança.</p>
+
+      <div class="actions">
+        <a class="btn primary" href="#admissoes">Descobrir admissões ↗</a>
+        <a class="btn secondary" href="#escola">Conhecer a escola →</a>
+      </div>
+
+      <div class="proof">
+        <div class="proof-icons">
+          <span>✦</span><span>✳</span><span>＋</span>
+        </div>
+        <div>
+          <strong>Um lugar para crescer</strong>
+          <small>Conhecimento, criatividade e novas possibilidades.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img class="hero-photo"
+        src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1100&q=85"
+        alt="Alunos numa sala de aula">
+
+      <div class="float-card">
+        <span>✧</span>
+        <b>O teu potencial.<br>O teu futuro.</b>
+        <small>Começa com uma boa educação.</small>
+      </div>
+
+      <div class="caption">CURIOSIDADE, DESCOBERTA E CRESCIMENTO</div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">↓ &nbsp; ROLA PARA DESCOBRIR &nbsp; ↓</div>
+</section>
+
+<section class="panel about" id="escola">
+  <div class="container about-grid">
+    <div class="about-art reveal">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=950&q=85"
+        alt="Estudantes a aprender em conjunto" loading="lazy">
+      <div class="badge">✦<br>Talentos que<br>ganham asas.</div>
+      <div class="about-bottom">
+        <b>Aprender vai muito além da sala de aula.</b>
+        <small>Conhecimento, confiança e novas possibilidades.</small>
+      </div>
+    </div>
+
+    <div>
+      <span class="eyebrow reveal">A ESSÊNCIA DA LOARDER</span>
+      <h2 class="reveal delay-1">Mais do que ensinar.<br><em>Preparar para a vida.</em></h2>
+      <p class="lead reveal delay-2">Acreditamos numa educação que desperta perguntas, estimula a criatividade e ajuda cada aluno a crescer com autonomia, responsabilidade e respeito pelo próximo.</p>
+
+      <div class="values">
+        <article class="value reveal">
+          <b>✧ Curiosidade</b>
+          <p>Incentivar perguntas, imaginação e vontade de descobrir.</p>
+        </article>
+        <article class="value reveal">
+          <b>◎ Confiança</b>
+          <p>Reconhecer o potencial e acompanhar cada percurso.</p>
+        </article>
+        <article class="value reveal">
+          <b>↗ Autonomia</b>
+          <p>Desenvolver iniciativa e pensamento crítico.</p>
+        </article>
+        <article class="value reveal">
+          <b>⌘ Cooperação</b>
+          <p>Aprender com os outros e crescer em comunidade.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel learning" id="ensino">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow reveal">CAMINHOS DE APRENDIZAGEM</span>
+        <h2 class="reveal delay-1">Conhecimento para<br><em>ir mais longe.</em></h2>
+      </div>
+      <p class="lead reveal">Um percurso educativo que fortalece competências e prepara os alunos para os desafios de amanhã.</p>
+    </div>
+
+    <div class="programs">
+      <article class="program one reveal">
+        <span>01 / DESCOBERTA</span>
+        <div>
+          <h3>Iniciação</h3>
+          <p>Despertar a curiosidade através da exploração, da expressão e da convivência.</p>
+          <small>PRIMEIROS PASSOS · DESCOBRIR</small>
+        </div>
+      </article>
+
+      <article class="program two reveal">
+        <span>02 / FUNDAMENTOS</span>
+        <div>
+          <h3>Ensino Primário</h3>
+          <p>Construir bases sólidas em comunicação, raciocínio e hábitos de estudo.</p>
+          <small>SABER · FAZER · PARTILHAR</small>
+        </div>
+      </article>
+
+      <article class="program three reveal">
+        <span>03 / HORIZONTES</span>
+        <div>
+          <h3>Ensino Secundário</h3>
+          <p>Consolidar conhecimentos, desenvolver pensamento crítico e preparar escolhas.</p>
+          <small>PENSAMENTO · PROJETOS · FUTURO</small>
+        </div>
+      </article>
+    </div>
+
+    <div class="pills">
+      <span>✦ Atividades criativas</span>
+      <span>✦ Apoio ao estudo</span>
+      <span>✦ Educação digital</span>
+      <span>✦ Projetos em grupo</span>
+    </div>
+
+    <p style="font-size:9px;color:#98a8c4;margin-top:8px">
+      Confirma os níveis e serviços realmente oferecidos pela escola antes de publicar.
+    </p>
+  </div>
+</section>
+
+<section class="panel admissions" id="admissoes">
+  <div class="container admission-grid">
+    <div>
+      <span class="eyebrow reveal">ADMISSÕES · O PRÓXIMO PASSO</span>
+      <h2 class="reveal delay-1">O teu próximo capítulo<br><em>começa aqui.</em></h2>
+      <p class="lead reveal">Estamos disponíveis para esclarecer dúvidas e ajudar a sua família a conhecer a proposta educativa da Loarder.</p>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <div><h3>Fale connosco</h3><p>Partilhe o nível pretendido e esclareça as suas dúvidas.</p></div>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <div><h3>Conheça a escola</h3><p>Combine uma visita para conhecer o ambiente escolar.</p></div>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <div><h3>Confirme os requisitos</h3><p>Consulte vagas, documentos, prazos e valores 
+aplicáveis.</p></div>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <div><h3>Finalize a inscrição</h3><p>Siga as orientações da secretaria.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="admission-card reveal">
+      <span class="eyebrow">A EQUIPA LOARDER</span>
+      <h3>Vamos encontrar<br>o melhor caminho.</h3>
+      <p>Peça informações sobre admissões, níveis de ensino ou uma visita à escola.</p>
+
+      <a class="btn primary"
+        href="https://wa.me/244900000000?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20admiss%C3%B5es%20na%20Loarder."
+        target="_blank" rel="noopener">Consultar pelo WhatsApp ↗</a>
+
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            Como posso saber se há vagas? <span>＋</span>
+          </button>
+          <div class="faq-answer"><p>Contacte a secretaria para confirmar vagas e níveis disponíveis.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            Que documentos são necessários? <span>＋</span>
+          </button>
+          <div class="faq-answer"><p>Peça à secretaria a lista atualizada para o nível pretendido.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            Posso marcar uma visita? <span>＋</span>
+          </button>
+          <div class="faq-answer"><p>Envie uma mensagem para combinar um dia e horário.</p></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="panel contact" id="contacto">
+  <div class="container contact-grid">
+    <div>
+      <span class="eyebrow reveal">ESTAMOS POR PERTO</span>
+      <h2 class="reveal delay-1">Vamos <em>conversar?</em></h2>
+      <p class="lead">Envie a sua mensagem e descubra como a Loarder pode fazer parte do percurso educativo da sua família.</p>
+
+      <div class="contact-item">
+        <div>
+          <small>TELEFONE / WHATSAPP</small>
+          <b>+244 900 000 000</b>
+          <a href="https://wa.me/244900000000" target="_blank" rel="noopener">Iniciar conversa ↗</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div>
+          <small>E-MAIL</small>
+          <b>geral@seudominio.ao</b>
+          <a href="mailto:geral@seudominio.ao">Enviar e-mail ↗</a>
+        </div>
+      </div>
+
+      <div class="socials">
+        <a href="#">Instagram ↗</a>
+        <a href="#">Facebook ↗</a>
+        <a href="#">YouTube ↗</a>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <span class="eyebrow">FORMULÁRIO DE CONTACTO</span>
+      <h3>Como podemos ajudar?</h3>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="nome">Nome completo *</label>
+          <input id="nome" name="nome" required placeholder="O seu nome">
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail *</label>
+          <input id="email" name="email" type="email" required placeholder="nome@exemplo.com">
+        </div>
+
+        <div class="field full">
+          <label for="telefone">Telefone</label>
+          <input id="telefone" name="telefone" type="tel" placeholder="+244">
+        </div>
+
+        <div class="field full">
+          <label for="assunto">Assunto *</label>
+          <select id="assunto" name="assunto" required>
+            <option value="">Selecione um assunto</option>
+            <option>Admissões e matrículas</option>
+            <option>Níveis de ensino</option>
+            <option>Marcar uma visita</option>
+            <option>Informações gerais</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="mensagem">Mensagem *</label>
+          <textarea id="mensagem" name="mensagem" required placeholder="Escreva a sua mensagem..."></textarea>
+        </div>
+      </div>
+
+      <button class="btn primary full" type="submit">Preparar mensagem no WhatsApp ↗</button>
+      <p class="form-note">O formulário abre o WhatsApp com a mensagem preenchida.</p>
+      <p class="form-status" id="formStatus" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<section class="panel location" id="localizacao">
+  <div class="container location-grid">
+    <div>
+      <span class="eyebrow reveal">COMO CHEGAR</span>
+      <h2 class="reveal delay-1">Encontre a <em>Loarder.</em></h2>
+      <p class="lead">Veja o mapa e planeie a visita. A localização é provisória e deve ser substituída pela morada exata da escola.</p>
+
+      <div class="location-detail">
+        <b>⌖ Luanda, Angola</b>
+        <span>Morada exata a confirmar pela escola.</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="https://maps.google.com/?q=Luanda+Angola" target="_blank" rel="noopener">Abrir Google Maps ↗</a>
+        <a class="btn secondary" href="#contacto">Contactar a escola</a>
+      </div>
+    </div>
+
+    <div class="map">
+      <iframe title="Mapa provisório de Luanda, Angola"
+        src="https://maps.google.com/maps?q=Luanda%2C%20Angola&z=12&output=embed"
+        loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <strong>LOARDER</strong>
+    <span>© <span id="year"></span> Escola Loarder</span>
+    <a href="#inicio">Voltar ao início ↑</a>
+  </footer>
+</section>
+
+</main>
+
+<a class="whatsapp" href="https://wa.me/244900000000" target="_blank" rel="noopener" aria-label="WhatsApp">☏</a>
+
+<script>
+(() => {
+  const panels = [...document.querySelectorAll(".panel")];
+  const nav = document.getElementById("siteNav");
+  const menu = document.getElementById("menuToggle");
+  const dots = [...document.querySelectorAll(".dots button")];
+  const progress = document.getElementById("progressFill");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let active = 0;
+  let locked = false;
+  let wheelAmount = 0;
+  let unlockTimer;
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  function setActive(index) {
+    active = Math.max(0, Math.min(panels.length - 1, index));
+
+    panels.forEach((panel, i) => {
+      panel.classList.toggle("is-active", i === active);
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === active) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+
+    progress.style.width = ((active + 1) / panels.length * 100) + "%";
+  }
+
+  function nearestPanel() {
+    let nearest = 0;
+    let distance = Infinity;
+
+    panels.forEach((panel, i) => {
+      const current = Math.abs(panel.getBoundingClientRect().top);
+
+      if (current < distance) {
+        nearest = i;
+        distance = current;
+      }
+    });
+
+    return nearest;
+  }
+
+  function isInteractive(target) {
+    return !!target.closest(
+      "input, textarea, select, button, a, form, iframe"
+    );
+  }
+
+  function panelCanScroll(panel, direction) {
+    if (!panel || panel.scrollHeight <= panel.clientHeight + 4) {
+      return false;
+    }
+
+    if (direction > 0) {
+      return panel.scrollTop + panel.clientHeight < panel.scrollHeight - 3;
+    }
+
+    return panel.scrollTop > 3;
+  }
+
+  function goTo(index) {
+    const next = Math.max(0, Math.min(panels.length - 1, index));
+
+    if (locked || next === active) return;
+
+    locked = true;
+    setActive(next);
+
+    panels[next].scrollIntoView({
+      behavior: reduced ? "auto" : "smooth",
+      block: "start"
+    });
+
+    clearTimeout(unlockTimer);
+
+    unlockTimer = setTimeout(() => {
+      locked = false;
+      setActive(nearestPanel());
+    }, reduced ? 100 : 780);
+  }
+
+  // No computador: uma secção de cada vez.
+  // O conteúdo interno é percorrido antes de passar à secção seguinte.
+  window.addEventListener("wheel", event => {
+    if (matchMedia("(max-width: 720px)").matches) return;
+    if (isInteractive(event.target)) return;
+
+    const panel = event.target.closest(".panel") || panels[active];
+
+    if (panelCanScroll(panel, event.deltaY)) return;
+
+    event.preventDefault();
+
+    if (locked) return;
+
+    wheelAmount += event.deltaY;
+
+    if (Math.abs(wheelAmount) < 42) return;
+
+    const direction = wheelAmount > 0 ? 1 : -1;
+    wheelAmount = 0;
+
+    goTo(active + direction);
+  }, { passive: false });
+
+  // Navegação pelo teclado.
+  window.addEventListener("keydown", event => {
+    if (isInteractive(event.target)) return;
+
+    if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+      event.preventDefault();
+      goTo(active + 1);
+    } else if (["ArrowUp", "PageUp"].includes(event.key)) {
+      event.preventDefault();
+      goTo(active - 1);
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      goTo(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      goTo(panels.length - 1);
+    }
+  });
+
+  // Pontos de navegação.
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => goTo(Number(dot.dataset.go)));
+  });
+
+  // Links do menu e navegação interna.
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+      const target = document.getElementById(
+        link.getAttribute("href").slice(1)
+      );
+
+      if (!target) return;
+
+      const index = panels.indexOf(target);
+
+      if (index < 0) return;
+
+      event.preventDefault();
+
+      nav.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+      menu.textContent = "☰";
+
+      goTo(index);
+      history.replaceState(null, "", "#" + target.id);
+    });
+  });
+
+  // Menu móvel.
+  menu.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+
+    menu.setAttribute("aria-expanded", String(open));
+    menu.textContent = open ? "✕" : "☰";
+  });
+
+  // Atualiza a secção ativa quando a pessoa percorre a página.
+  window.addEventListener("scroll", () => {
+    if (!locked) setActive(nearestPanel());
+  }, { passive: true });
+
+  // Animações ao aparecerem no ecrã.
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      } else {
+        entry.target.classList.remove("visible");
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+  });
+
+  // Perguntas frequentes.
+  document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+      const item = button.closest(".faq-item");
+      const wasOpen = item.classList.contains("open");
+
+      document.querySelectorAll(".faq-item").forEach(other => {
+        other.classList.remove("open");
+        other.querySelector(".faq-question")
+          .setAttribute("aria-expanded", "false");
+      });
+
+      if (!wasOpen) {
+        item.classList.add("open");
+        button.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  // Formulário: prepara a mensagem para abrir no WhatsApp.
+  document.getElementById("contactForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+
+    if (!form.reportValidity()) return;
+
+    const data = new FormData(form);
+
+    const message = [
+      "Olá, Escola Loarder!",
+      "",
+      "Nome: " + data.get("nome"),
+      "E-mail: " + data.get("email"),
+      "Telefone: " + (data.get("telefone") || "Não indicado"),
+      "Assunto: " + data.get("assunto"),
+      "Mensagem: " + data.get("mensagem")
+    ].join("\n");
+
+    document.getElementById("formStatus").textContent =
+      "A abrir o WhatsApp para concluir o envio…";
+
+    window.open(
+      "https://wa.me/244900000000?text=" + encodeURIComponent(message),
+      "_blank",
+      "noopener"
+    );
+  });
+
+  setActive(0);
+})();
+</script>
+
+</body>
+</html>
